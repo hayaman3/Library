@@ -1,0 +1,21 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    
+}
+#books{
+    display:flex;
+    width:100%;
+    gap:5px;
+    flex-wrap: wrap;
+}
+#form{
+    display:none;
+}    
+.card{
+    height:100px;
+    width:100px;
+    background: rgb(166, 166, 166);
+}
