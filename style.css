@@ -3,16 +3,38 @@
     padding:0;
 }
 body{
-    
-}
-#books{
     display:flex;
+}
+nav{
+    max-width: 200px;
+    min-width: 100px;
+    height:100vh;
+    background: grey;
+}
+
+.hide{
+ display:none;   
+}
+
+.show{
+    display:flex
+}
+
+label{
+    flex:left;
+}
+input{
+    flex:right;
+}
+
+#books{
     width:100%;
     gap:5px;
     flex-wrap: wrap;
 }
-#form{
-    display:none;
+form{
+    flex-direction: column;
+    width:200px;
 }    
 .card{
     height:100px;

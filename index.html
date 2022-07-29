@@ -10,20 +10,24 @@
     <title>Document</title>
 </head>
 <body>
+    <nav>
     <button id="form-button">Add Book</button>
-    <main id="books">
+    </nav>
+    <main class="show" id="books">
 
     </main>
-    <main id="form">
+    <main class="hide" id="form">
         <form>
-                <label for="author">Author: </label>
-                <input type="text" id="author" name="author" value="Author">
-                <label for="book-title">Title: </label>
-                <input type="text" id="book-title" name="title" value="Title">
-                <label for="pages">Pages: </label>
-                <input type="number" id="pages" name="pages">
+            <label for="author">Author: </label>
+            <input type="text" id="author" name="author" value="Author">
+            <label for="book-title">Title: </label>
+            <input type="text" id="book-title" name="title" value="Title">
+            <label for="pages">Pages: </label>
+            <input type="number" id="pages" name="pages">
+            <button type="submit">Save</button>
         </form>
     </main>
+
 
 </body>
 <script type="text/javascript" src="script.js"></script>

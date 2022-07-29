@@ -1,4 +1,4 @@
-let myLibrary = [];
+let myLibrary = ["book","book","book"];
 
 function Book(title, author, numOfPages) {
   // the constructor...
@@ -34,18 +34,21 @@ const book = document.getElementById("books")
 const form = document.getElementById("form");
 const formButton = document.getElementById("form-button");
 
-function addBookForm(){
 
-}
-function showForm(){
-    if(form.style.display==="none"){
-        form.style.display = "block";
-        book.style.display = "none"
-    }else{
-        form.style.display = "none";
-        book.style.display = "flex"
+
+function toggle(){
+    if(form.className == "hide"){
+        form.className = "flex";
+        book.className = "hide";
+    }
+    else{
+        form.className = "hide"
+        book.className = "flex";
     }
 }
 
+function addBookForm(){
 
-formButton.addEventListener("click", showForm)
+}
+
+formButton.addEventListener("click", toggle)
