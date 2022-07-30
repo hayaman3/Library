@@ -11,15 +11,9 @@ nav{
     height:100vh;
     background: grey;
 }
-
-.hide{
- display:none;   
+main{
+    display:flex;
 }
-
-.show{
-    display:flex
-}
-
 label{
     flex:left;
 }
@@ -27,9 +21,10 @@ input{
     flex:right;
 }
 
-#books{
+#library{
+    margin:30px;
     width:100%;
-    gap:5px;
+    gap:10px;
     flex-wrap: wrap;
 }
 form{
@@ -37,7 +32,7 @@ form{
     width:200px;
 }    
 .card{
-    height:100px;
-    width:100px;
+    height:200px;
+    width:200px;
     background: rgb(166, 166, 166);
 }
