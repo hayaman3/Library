@@ -5,6 +5,7 @@ const submit = document.getElementById("submit");
 
 let libraryArr = [["a1","b1",1],["a2","b2",2],["a3","b3",3]];
 
+//maybe better looped declared so I can see in values in console
 let book1 = new Book(...libraryArr[0])
 let book2 = new Book(...libraryArr[1])
 let book3 = new Book(...libraryArr[2])
@@ -16,7 +17,9 @@ function Book(title, author, numOfPages){
   this.numOfPages = numOfPages;
 //   this.background = "#file"
 }
+
 addBookToLibrary()
+
 function addBookToLibrary(){
     for(i=0;i<libraryArr.length;i++){
     // Create a div node:
@@ -29,8 +32,9 @@ function addBookToLibrary(){
     // Create a text node:
         for(j=0;j<libraryArr[i].length;j++){
             textnode = document.createTextNode(keys[j]+libraryArr[i][j]+'\n')
-            node.appendChild(textnode);
-            node.appendChild(document.createNode('br'));
+            let div = node.appendChild(document.createElement('div'))
+            div.appendChild(textnode);
+            // node.appendChild(document.createElement('br'));
         }
         document.querySelector("main").appendChild(node);
     }

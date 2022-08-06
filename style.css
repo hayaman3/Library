@@ -40,6 +40,8 @@ form{
 .card{
     display:flex;
     flex-direction: column;
+    gap:10px;
+    padding:10px;
     height:200px;
     width:200px;
     background: rgb(166, 166, 166);
