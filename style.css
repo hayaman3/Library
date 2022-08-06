@@ -12,7 +12,8 @@ nav{
     background: grey;
 }
 main{
-    display:flex;
+    margin:30px;
+    align-content:flex-start;
 }
 label{
     flex:left;
@@ -22,16 +23,23 @@ input{
 }
 
 #library{
-    margin:30px;
+    display:flex;
+        
     width:100%;
     gap:10px;
     flex-wrap: wrap;
+}
+#form{
+    display:flex;
+    gap:10px;
 }
 form{
     flex-direction: column;
     width:200px;
 }    
 .card{
+    display:flex;
+    flex-direction: column;
     height:200px;
     width:200px;
     background: rgb(166, 166, 166);
