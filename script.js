@@ -1,5 +1,6 @@
 const library = document.getElementById("library");
 const form = document.getElementById("form");
+//display:none by default
 const showForm = document.getElementById("show-form");
 const submit = document.getElementById("submit");
 
@@ -18,37 +19,39 @@ function Book(title, author, numOfPages){
 //   this.background = "#file"
 }
 
-addBookToLibrary()
+showLibrary()
 
-function addBookToLibrary(){
+function showLibrary(){
     for(i=0;i<libraryArr.length;i++){
-    // Create a div node:
-    const node = document.createElement("div");
-    node.classList.add("card")
-    let textnode = "";
-    let keys = ["Author: ","Title: ","Number of Pages: "]
-    let textnode2 = "";
-    let textnode3 = "";
-    // Create a text node:
+        const card = document.createElement("div");
+        const accent = document.createElement("div");
+        const bookCover = document.createElement("div");
+        const details = document.createElement("div")
+
+        card.classList.add("card")
+        accent.classList.add("accent")
+        bookCover.classList.add("book-cover")
+        details.classList.add("details")
+
+        card.appendChild(accent);
+        card.appendChild(bookCover);
+        card.appendChild(details);
+
+        let keys = ["Author: ","Title: ","Number of Pages: "];
         for(j=0;j<libraryArr[i].length;j++){
-            textnode = document.createTextNode(keys[j]+libraryArr[i][j]+'\n')
-            let div = node.appendChild(document.createElement('div'))
+            let textnode = document.createTextNode(keys[j]+libraryArr[i][j]+'\n')
+            let div = details.appendChild(document.createElement('div'))
             div.appendChild(textnode);
-            // node.appendChild(document.createElement('br'));
         }
-        document.querySelector("main").appendChild(node);
+        library.appendChild(card);
     }
 }
 
-const addBook = (e)=>{
+function addBook(e){
     e.preventDefault();  //to stop the form submitting
-    let book = {
-        author: document.getElementById("author").value,
-        title: document.getElementById("title").value,
-        pages: document.getElementById("pages").value
-    }
-    library.push(book);
-    document.forms[0].reset(); // to clear the form for the next entries
+    let newbook = [document.getElementById("author").value,document.getElementById("title").value,document.getElementById("pages").value]
+    libraryArr.push(newbook)
+    document.forms[0].reset(); // to clear the form for the next entries 
 }
 
 function toggleVisibility(){
@@ -59,10 +62,12 @@ function toggleVisibility(){
         form.style.display = "none";
         library.style.display = "flex"
     }
+    
 }
 
 function addBookForm(){
 
 }
+
 submit.addEventListener("click", addBook)
 showForm.addEventListener("click", toggleVisibility)
