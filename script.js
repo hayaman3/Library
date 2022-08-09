@@ -1,7 +1,9 @@
 const library = document.getElementById("library");
-const form = document.getElementById("form");
-//display:none by default
+const form = document.querySelector("form");
+// Modal
 const showForm = document.getElementById("show-form");
+const modal = document.getElementById("myModal");
+const xModal = document.getElementById("close");
 const submit = document.getElementById("submit");
 
 let libraryArr = [["a1","b1",1],["a2","b2",2],["a3","b3",3]];
@@ -54,20 +56,26 @@ function addBook(e){
     document.forms[0].reset(); // to clear the form for the next entries 
 }
 
-function toggleVisibility(){
-    if(form.style.display==="none"){
-        form.style.display = "flex";
-        library.style.display = "none"
-    }else{
-        form.style.display = "none";
-        library.style.display = "flex"
-    }
-    
-}
-
 function addBookForm(){
 
 }
 
-submit.addEventListener("click", addBook)
-showForm.addEventListener("click", toggleVisibility)
+submit.addEventListener("click", addBook);
+showForm.addEventListener("click", openModal);
+xModal.addEventListener("click", closeModal);
+
+//Modal functions
+function openModal() {
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
