@@ -13,8 +13,8 @@ let book1 = new Book(...libraryArr[0])
 let book2 = new Book(...libraryArr[1])
 let book3 = new Book(...libraryArr[2])
 
+// the constructor...
 function Book(title, author, numOfPages){
-  // the constructor...
   this.title = title;
   this.author = author;
   this.numOfPages = numOfPages;
@@ -56,21 +56,6 @@ function addBook(e){
     document.forms[0].reset(); // to clear the form for the next entries
     library.innerHTML = "";
     showLibrary();
-}
-
-// const addBook = (e)=>{
-//     e.preventDefault();
-//     let book = {
-//         author: document.getElementById("author").value,
-//         title: document.getElementById("title").value,
-//         pages: document.getElementById("pages").value
-//     }
-//     library.push(book);
-//     document.forms[0].reset();
-// }
-
-function addBookForm(){
-
 }
 
 submit.addEventListener("click", addBook);
