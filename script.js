@@ -53,8 +53,21 @@ function addBook(e){
     e.preventDefault();  //to stop the form submitting
     let newbook = [document.getElementById("author").value,document.getElementById("title").value,document.getElementById("pages").value]
     libraryArr.push(newbook)
-    document.forms[0].reset(); // to clear the form for the next entries 
+    document.forms[0].reset(); // to clear the form for the next entries
+    library.innerHTML = "";
+    showLibrary();
 }
+
+// const addBook = (e)=>{
+//     e.preventDefault();
+//     let book = {
+//         author: document.getElementById("author").value,
+//         title: document.getElementById("title").value,
+//         pages: document.getElementById("pages").value
+//     }
+//     library.push(book);
+//     document.forms[0].reset();
+// }
 
 function addBookForm(){
 
