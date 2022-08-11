@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -10,20 +10,21 @@
     <title>Library</title>
 </head>
 <body>
-    <nav>
-        <button id="show-form">Add Book</button>
-    </nav>
+    <header>Library</header>
+    <div class="add">
+        <button id="show-form">+ Add Book</button>
+    </div>  
     <main id="library"></main>
     <div id="myModal" class="modal">
         <div class="modal-content">
             <div id="close">&times;</div>
-            <form id="form">
+            <form id="form" action="" method="post">
                 <label for="author">Author: </label>
-                <input type="text" id="author" name="author" required>
+                <input type="text" id="author" name="author" required maxlength="100" />
                 <label for="book-title">Title: </label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="book-title" required />
                 <label for="pages">Pages: </label>
-                <input type="number" id="pages" name="pages" required>
+                <input type="number" id="pages" name="pages" required />
                 <button type="submit" id="submit">Save</button>
             </form>
         </div>

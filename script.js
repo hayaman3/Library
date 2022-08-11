@@ -6,7 +6,7 @@ const modal = document.getElementById("myModal");
 const xModal = document.getElementById("close");
 const submit = document.getElementById("submit");
 
-let libraryArr = [["a1","b1",1],["a2","b2",2],["a3","b3",3]];
+let libraryArr = [["a1","b1",1,false],["a2","b2",2,false],["a3","b3",3,false]];
 
 //maybe better looped declared so I can see in values in console
 let book1 = new Book(...libraryArr[0])
@@ -14,10 +14,11 @@ let book2 = new Book(...libraryArr[1])
 let book3 = new Book(...libraryArr[2])
 
 // the constructor...
-function Book(title, author, numOfPages){
+function Book(title, author, numOfPages, status){
   this.title = title;
   this.author = author;
   this.numOfPages = numOfPages;
+  this.isRead = status;
 //   this.background = "#file"
 }
 
@@ -40,14 +41,30 @@ function showLibrary(){
         card.appendChild(details);
 
         let keys = ["Author: ","Title: ","Number of Pages: "];
-        for(j=0;j<libraryArr[i].length;j++){
+        for(j=0;j<libraryArr[i].length-1;j++){
             let textnode = document.createTextNode(keys[j]+libraryArr[i][j]+'\n')
             let div = details.appendChild(document.createElement('div'))
             div.appendChild(textnode);
         }
+        const status = document.createElement("button")
+        status.classList.add("status")//---------CHANGE--------------
+        status.innerText = "Not Read"
+        card.appendChild(status);
         library.appendChild(card);
     }
 }
+    //---------GUIDE--------------
+
+// const addBook = (e)=>{
+//     e.preventDefault();
+//     let book = {
+//         author: document.getElementById("author").value,
+//         title: document.getElementById("title").value,
+//         pages: document.getElementById("pages").value
+//     }
+//     library.push(book);
+//     document.forms[0].reset();
+// }
 
 function addBook(e){
     e.preventDefault();  //to stop the form submitting
@@ -58,7 +75,7 @@ function addBook(e){
     showLibrary();
 }
 
-submit.addEventListener("click", addBook);
+form.addEventListener("submit", addBook);
 showForm.addEventListener("click", openModal);
 xModal.addEventListener("click", closeModal);
 
