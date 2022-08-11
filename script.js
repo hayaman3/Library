@@ -6,18 +6,31 @@ const modal = document.getElementById("myModal");
 const xModal = document.getElementById("close");
 const submit = document.getElementById("submit");
 
-let libraryArr = [["a1","b1",1,false],["a2","b2",2,false],["a3","b3",3,false]];
-
-//maybe better looped declared so I can see in values in console
-let book1 = new Book(...libraryArr[0])
-let book2 = new Book(...libraryArr[1])
-let book3 = new Book(...libraryArr[2])
+let list = [{
+    author:"Juan",
+    title:"Book One",
+    pages:123,
+    isRead:false,
+  },
+  {
+    author:"Wong",
+    title:"Book Two",
+    pages:1234,
+    isRead:true,
+  },
+  {
+    author:"Gaben",
+    title:"Book Four",
+    pages:124,
+    isRead:true,
+  }
+];
 
 // the constructor...
-function Book(title, author, numOfPages, status){
-  this.title = title;
+function Book(author, title, pages, status){
   this.author = author;
-  this.numOfPages = numOfPages;
+  this.title = title;
+  this.pages = pages;
   this.isRead = status;
 //   this.background = "#file"
 }
@@ -25,7 +38,7 @@ function Book(title, author, numOfPages, status){
 showLibrary()
 
 function showLibrary(){
-    for(i=0;i<libraryArr.length;i++){
+    for(i=0;i<list.length;i++){
         const card = document.createElement("div");
         const accent = document.createElement("div");
         const bookCover = document.createElement("div");
@@ -36,41 +49,52 @@ function showLibrary(){
         bookCover.classList.add("book-cover")
         details.classList.add("details")
 
-        card.appendChild(accent);
-        card.appendChild(bookCover);
-        card.appendChild(details);
+        card.append(accent, bookCover, details);
 
-        let keys = ["Author: ","Title: ","Number of Pages: "];
-        for(j=0;j<libraryArr[i].length-1;j++){
-            let textnode = document.createTextNode(keys[j]+libraryArr[i][j]+'\n')
-            let div = details.appendChild(document.createElement('div'))
-            div.appendChild(textnode);
-        }
+        const author = document.createElement('div');
+        const title = document.createElement('div');
+        const pages = document.createElement('div');
+      
+        author.innerText = "Author: "+list[i].author;
+        title.innerText = "Title: "+list[i].title;
+        pages.innerText = "Pages: "+list[i].pages;
+
+        details.append(author, title, pages);
+        
+        //isRead button
         const status = document.createElement("button")
-        status.classList.add("status")//---------CHANGE--------------
-        status.innerText = "Not Read"
+        status.classList.add("status")
+        if(list[i].isRead){
+            status.classList.add("read");
+            status.innerText = "Read";
+        }else{
+            status.classList.add("not-read");
+            status.innerText = "Not read";
+        }
         card.appendChild(status);
         library.appendChild(card);
+
+        //remove button
+        const remove = document.createElement("button");
+        remove.classList.add("remove");
+        remove.innerText = "Remove"
+        card.appendChild(remove)
     }
 }
-    //---------GUIDE--------------
-
-// const addBook = (e)=>{
-//     e.preventDefault();
-//     let book = {
-//         author: document.getElementById("author").value,
-//         title: document.getElementById("title").value,
-//         pages: document.getElementById("pages").value
-//     }
-//     library.push(book);
-//     document.forms[0].reset();
-// }
 
 function addBook(e){
-    e.preventDefault();  //to stop the form submitting
-    let newbook = [document.getElementById("author").value,document.getElementById("title").value,document.getElementById("pages").value]
-    libraryArr.push(newbook)
-    document.forms[0].reset(); // to clear the form for the next entries
+    e.preventDefault();//stop page refresh
+
+    const isRead = document.getElementById("is-read")
+    const myFormData = new FormData(e.target);
+    let formDataObj = Object.fromEntries(myFormData.entries());
+    
+    //append data
+    Object.assign(formDataObj, {isRead:isRead.checked});
+    list.push(formDataObj)
+
+    // to clear the form for the next entries
+    document.forms[0].reset();
     library.innerHTML = "";
     showLibrary();
 }
@@ -78,6 +102,7 @@ function addBook(e){
 form.addEventListener("submit", addBook);
 showForm.addEventListener("click", openModal);
 xModal.addEventListener("click", closeModal);
+
 
 //Modal functions
 function openModal() {
