@@ -1,6 +1,6 @@
 const library = document.getElementById("library");
 const form = document.querySelector("form");
-// Modal
+// Modal variables
 const showForm = document.getElementById("show-form");
 const modal = document.getElementById("myModal");
 const xModal = document.getElementById("close");
@@ -71,6 +71,7 @@ function showLibrary(){
             status.classList.add("not-read");
             status.innerText = "Not read";
         }
+        status.addEventListener('click', isRead)
         card.appendChild(status);
         library.appendChild(card);
 
@@ -78,7 +79,9 @@ function showLibrary(){
         const remove = document.createElement("button");
         remove.classList.add("remove");
         remove.innerText = "Remove"
+        remove.addEventListener('click', removeCard)
         card.appendChild(remove)
+        card.id
     }
 }
 
@@ -99,10 +102,24 @@ function addBook(e){
     showLibrary();
 }
 
-form.addEventListener("submit", addBook);
-showForm.addEventListener("click", openModal);
-xModal.addEventListener("click", closeModal);
-
+//Card Buttons
+//wait for JSON to delete in object file
+function removeCard(e){
+    this.parentNode.remove()
+}
+//wait for JSON to edit in object file
+function isRead(){
+    if(this.innerText=="Read"){
+        this.classList.remove("read");
+        this.classList.add("not-read");
+        this.innerText = "Not read";
+    }
+    else if(this.innerText=="Not read"){
+        this.classList.add("read");
+        this.classList.remove("not-read");
+        this.innerText = "Read";
+    }
+}
 
 //Modal functions
 function openModal() {
@@ -118,4 +135,8 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+form.addEventListener("submit", addBook);
+showForm.addEventListener("click", openModal);
+xModal.addEventListener("click", closeModal);
 
